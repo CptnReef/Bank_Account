@@ -1,3 +1,5 @@
+import random
+
 class BankAccount:
     def __init__(self,full_name,account_number,routing_number,balance):
         self._full_name = full_name
@@ -5,28 +7,61 @@ class BankAccount:
         self._routing_number = routing_number
         self.balance = balance
 
+        return
+
     def deposit(self,amount):
         """ Display the amount of balance after a deposit """
         self.amount = amount
-        balance = self.amount + self.balance
+        self.balance += self.amount
         print(f"Amount Deposited: ${self.amount}.")
-        return balance
+
+        return f"Balance: {self.balance}"
 
     def withdraw(self,amount):
         """ Display the amount of balance after a withdrawal """
         self.amount = amount
-        balance = self.balance - self.amount
+        self.balance -= self.amount
 
-        if balance <= 0:
-          print(f"Insufficient funds.")
-          balance -= 10
+        if self.balance <= 0:
+          self.balance -= 10
+          return print("Insufficient funds. Balance Charged $10")
         else:
           print(f"Amount Withdrawn: ${self.amount}.")
+          return (f"Balance: {self.balance}")
 
-        return balance
+    def get_balance(self):
+        return self.balance
 
+    def add_interest(self):
+        interest = self.balance * 0.00083
+        return interest
 
+    def print_receipt(self):
+      name = self._full_name
+      
+      receipt = {
+        'Account no.' : self._account_number,
+        'Routing no.' : self._routing_number,
+        'Balance' : self.balance
+      }
 
-reef = BankAccount("sharif stafford",111111111,1,20)
-print(reef.deposit(10))
-print(reef.withdraw(20))
+      print(name)
+
+      for receipts in receipt:
+        print(receipts)
+
+      return print ('\n')
+
+    
+
+num1= random.randint(000000000, 999999999)
+num2= random.randint(000000000, 999999999)
+num3= random.randint(000000000, 999999999)
+
+reef = BankAccount("sharif stafford",num1,123456789,20)
+leaf = BankAccount("leif erikson",num2,123456789,20)
+bowe = BankAccount("david bowie",num3,123456789,20)
+
+print(reef.print_receipt())
+print(leaf.print_receipt())
+print(bowe.print_receipt())
